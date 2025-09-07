@@ -50,12 +50,11 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::iter::FromIterator; 
 
     // Don't modify this function!
     fn get_fruit_basket() -> HashMap<Fruit, u32> {
         let content = [(Fruit::Apple, 4), (Fruit::Mango, 2), (Fruit::Lychee, 5)];
-        HashMap::from_iter(content.into_iter())
+        content.into_iter().collect()
     }
 
     #[test]

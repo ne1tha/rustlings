@@ -27,12 +27,12 @@ fn divide(a: i64, b: i64) -> Result<i64, DivisionError> {
 // Desired output: `Ok([1, 11, 1426, 3])`
 fn result_with_list() -> Result<Vec<i64>, DivisionError> {
     let numbers = [27, 297, 38502, 81];
-    numbers.iter().map(|&n| divide(n, 27)).collect()
+    numbers.into_iter().map(|n| divide(*n, 27)).collect()
 }
 
 fn list_of_results() -> Vec<Result<i64, DivisionError>> {
     let numbers = [27, 297, 38502, 81];
-    numbers.iter().map(|&n| divide(n, 27)).collect()
+    numbers.into_iter().map(|n| divide(*n, 27)).collect()
 }
 
 fn main() {
