@@ -38,6 +38,13 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
     }
 }
 
+use std::iter::FromIterator;
+    // Don't modify this function!
+    fn get_fruit_basket() -> HashMap<Fruit, u32> {
+        let content = [(Fruit::Apple, 4), (Fruit::Mango, 2), (Fruit::Lychee, 5)];
+        HashMap::from_iter(content)
+    }
+
 fn main() {
     // 测试代码
     let mut basket = get_fruit_basket();
@@ -50,11 +57,11 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
-
+    use std::iter::FromIterator;
     // Don't modify this function!
     fn get_fruit_basket() -> HashMap<Fruit, u32> {
         let content = [(Fruit::Apple, 4), (Fruit::Mango, 2), (Fruit::Lychee, 5)];
-        content.into_iter().collect()
+        HashMap::from_iter(content)
     }
 
     #[test]

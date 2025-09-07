@@ -1,4 +1,5 @@
-use std::convert::TryInto;
+// 移除未使用的导入
+// use std::convert::TryInto;
 
 #[derive(PartialEq, Debug)]
 enum CreationError {
@@ -14,8 +15,8 @@ impl PositiveNonzeroInteger {
         match value {
             n if n < 0 => Err(CreationError::Negative),
             n if n == 0 => Err(CreationError::Zero),
-            n if n > 0 => Ok(Self(value.into().unwrap())),
-            _ => unreachable!(), // 理论上不会到达这里
+            n if n > 0 => Ok(Self(value as u64)), // 使用 as 进行转换
+            _ => unreachable!(),
         }
     }
 }
