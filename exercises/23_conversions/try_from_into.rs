@@ -28,14 +28,29 @@ enum IntoColorError {
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
 
-    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {}
+    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let (r, g, b) = tuple;
+        if (0..256).contains(&r) && (0..256).contains(&g) && (0..256).contains(&b){
+            return Ok(Color { red: r as u8, green: g as u8, blue: b as u8});
+        } else {
+            return Err(Self::Error::IntConversion);
+        }
+
+    }
 }
 
 // TODO: Array implementation.
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {}
+    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let [r, g, b] = arr;
+        if (0..256).contains(&r) && (0..256).contains(&g) && (0..256).contains(&b){
+            return Ok(Color { red: r as u8, green: g as u8, blue: b as u8});
+        } else {
+            return Err(Self::Error::IntConversion);
+        }
+    }
 }
 
 // TODO: Slice implementation.
@@ -43,7 +58,17 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {}
+    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if let [r, g, b] = slice {
+        if (0..256).contains(r) && (0..256).contains(g) && (0..256).contains(b){
+            Ok(Color { red: *r as u8, green: *g as u8, blue: *b as u8})
+        } else {
+            Err(Self::Error::IntConversion)
+        }
+    } else {
+        Err(Self::Error::BadLen)
+    }
+}
 }
 
 fn main() {

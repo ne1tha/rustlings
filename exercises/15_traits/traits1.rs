@@ -6,6 +6,11 @@ trait AppendBar {
 
 impl AppendBar for String {
     // TODO: Implement `AppendBar` for the type `String`.
+    fn append_bar(self) -> Self {
+        let mut nstr = self.clone();
+        nstr.push_str("Bar");
+        nstr
+    }
 }
 
 fn main() {
