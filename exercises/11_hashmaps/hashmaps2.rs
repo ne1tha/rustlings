@@ -50,7 +50,7 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::iter::FromIterator;
+    use std::iter::FromIterator; // 添加这行导入
 
     // Don't modify this function!
     fn get_fruit_basket() -> HashMap<Fruit, u32> {

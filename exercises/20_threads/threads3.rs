@@ -17,6 +17,8 @@ impl Queue {
 fn send_tx(q: Queue, tx: mpsc::Sender<u32>) {
     // Clone the sender so both threads can send values.
     let tx1 = tx.clone();
+    
+    // Extract the vectors from the Queue before moving them into threads
     let first_half = q.first_half;
     let second_half = q.second_half;
 

@@ -1,3 +1,4 @@
+use std::convert::TryInto;
 
 #[derive(PartialEq, Debug)]
 enum CreationError {
@@ -10,13 +11,12 @@ struct PositiveNonzeroInteger(u64);
 
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<Self, CreationError> {
-        // TODO: This function shouldn't always return an `Ok`.
-        if value < 0 {
-            return Err(CreationError::Negative);
-        } else if value == 0 {
-            return Err(CreationError::Zero);
+        match value {
+            n if n < 0 => Err(CreationError::Negative),
+            n if n == 0 => Err(CreationError::Zero),
+            n if n > 0 => Ok(Self(value.try_into().unwrap())),
+            _ => unreachable!(), // 理论上不会到达这里
         }
-        Ok(Self(value as u64))
     }
 }
 
