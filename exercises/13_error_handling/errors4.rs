@@ -1,3 +1,4 @@
+
 #[derive(PartialEq, Debug)]
 enum CreationError {
     Negative,
@@ -10,12 +11,12 @@ struct PositiveNonzeroInteger(u64);
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<Self, CreationError> {
         // TODO: This function shouldn't always return an `Ok`.
-        match value {
-            n if n > 1 => Ok(Self(value.try_into().unwrap())),
-            n if n == 0 => Err(CreationError::Zero),
-            _ => Err(CreationError::Negative),
-            
+        if value < 0 {
+            return Err(CreationError::Negative);
+        } else if value == 0 {
+            return Err(CreationError::Zero);
         }
+        Ok(Self(value as u64))
     }
 }
 

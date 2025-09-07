@@ -33,16 +33,14 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         // basket. Note that you are not allowed to put any type of fruit that's
         // already present!
         if !basket.contains_key(&fruit) {
-            match fruit {
-                Fruit::Banana => basket.insert(fruit, 2), // 添加2个香蕉
-                Fruit::Pineapple => basket.insert(fruit, 3), // 添加3个菠萝
-                Fruit::Apple => basket.insert(fruit, 4), 
-                Fruit::Lychee => basket.insert(fruit, 5),
-                Fruit::Mango => basket.insert(fruit, 2),
-            };
+            basket.insert(fruit, 1); // Insert one of each new fruit
+        } else {
+            // If the fruit is already in the basket, we can skip it.
+            continue;
         }
     }
 }
+
 
 fn main() {
     // You can optionally experiment here.
