@@ -30,8 +30,6 @@ fn result_with_list() -> Result<Vec<i64>, DivisionError> {
     numbers.iter().map(|&n| divide(n, 27)).collect()
 }
 
-// TODO: Add the correct return type and complete the function body.
-// Desired output: `[Ok(1), Ok(11), Ok(1426), Ok(3)]`
 fn list_of_results() -> Vec<Result<i64, DivisionError>> {
     let numbers = [27, 297, 38502, 81];
     numbers.iter().map(|&n| divide(n, 27)).collect()
